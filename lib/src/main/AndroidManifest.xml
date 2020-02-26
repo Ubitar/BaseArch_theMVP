@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.huang.lib" >
+    <application>
+        <provider
+            android:name=".provider.AppProvider"
+            android:authorities="com.base.library" />
+    </application>
+</manifest>
