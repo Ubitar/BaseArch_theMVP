@@ -2,6 +2,7 @@ package com.huang.base.network.api
 
 import com.common.bean.BaseResponse
 import com.common.bean.UserBean
+import io.reactivex.Flowable
 
 import io.reactivex.Observable
 import retrofit2.http.Field
@@ -17,9 +18,9 @@ interface UserApi {
     @POST("student/login")
     fun login(
             @Field("account") account: String,
-            @Field("password") password: String): Observable<BaseResponse<UserBean>>
+            @Field("password") password: String): Flowable<BaseResponse<UserBean>>
 
     @FormUrlEncoded
     @POST("student/logout")
-    fun logout(@Field("token") token: String): Observable<BaseResponse<Any>>
+    fun logout(@Field("token") token: String): Flowable<BaseResponse<Any>>
 }

@@ -71,7 +71,7 @@ dependencies {
     implementation dependencies.singleclick
     implementation dependencies.glide
     kapt dependencies.glidecompiler
-    implementation dependencies.hawk
+    implementation dependencies.mmkv
     implementation dependencies.arouter
     kapt dependencies.aroutercompiler
     implementation dependencies.blankj_utilcode

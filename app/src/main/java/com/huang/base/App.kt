@@ -9,9 +9,7 @@ import com.common.network.NetworkManager
 import com.huang.lib.common.Constant
 import com.huang.lib.util.L
 import com.huang.lib.util.T
-import com.orhanobut.hawk.Hawk
 import com.qw.soul.permission.SoulPermission
-import me.yokeyword.fragmentation.Fragmentation
 
 class App : Application() {
 
@@ -23,7 +21,6 @@ class App : Application() {
         Utils.init(this)
         SoulPermission.init(this)
         NetworkManager.init()
-        Hawk.init(this).build()
 
         if (Constant.isDebug) {           // These two lines must be written before init, otherwise these configurations will be invalid in the init process
             ARouter.openLog()     // Print log

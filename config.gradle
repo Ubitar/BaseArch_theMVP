@@ -32,7 +32,7 @@ ext {
             'singleclick'                  : 'com.github.jarryleo:SingleClick:v1.8',
             'glide'                        : 'com.github.bumptech.glide:glide:4.9.0',
             'glidecompiler'                : 'com.github.bumptech.glide:compiler:4.9.0',
-            'hawk'                         : 'com.orhanobut:hawk:2.0.1',
+            'mmkv'                             : 'com.tencent:mmkv:1.0.23',
             'arouter'                      : 'com.alibaba:arouter-api:1.5.0',
             'aroutercompiler'              : 'com.alibaba:arouter-compiler:1.2.2',
             'recyclerview'                 : 'androidx.recyclerview:recyclerview:1.0.0',

@@ -2,6 +2,8 @@ package com.common.network;
 
 import com.common.bean.BaseResponse;
 
+import io.reactivex.Flowable;
+import io.reactivex.FlowableTransformer;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
@@ -9,7 +11,8 @@ import io.reactivex.functions.Function;
 
 public class ResponseCompose {
 
-    public static <T> ObservableTransformer<BaseResponse<T>, BaseResponse<T>> filterResult() {
+
+    public static <T> FlowableTransformer<BaseResponse<T>, BaseResponse<T>> parseResult() {
         return upstream -> upstream
                 .onErrorResumeNext(new ErrorResumeFunction<>())
                 .flatMap(new ResponseFunction<>());
@@ -20,11 +23,11 @@ public class ResponseCompose {
      *
      * @param <T>
      */
-    private static class ErrorResumeFunction<T> implements Function<Throwable, ObservableSource<? extends BaseResponse<T>>> {
+    private static class ErrorResumeFunction<T> implements Function<Throwable, Flowable<? extends BaseResponse<T>>> {
 
         @Override
-        public ObservableSource<? extends BaseResponse<T>> apply(Throwable throwable) throws Exception {
-            return Observable.error(DefaultNetExceptionParser.parse(throwable));
+        public Flowable<? extends BaseResponse<T>> apply(Throwable throwable) throws Exception {
+            return Flowable.error(DefaultNetExceptionParser.parse(throwable));
         }
     }
 
@@ -34,16 +37,16 @@ public class ResponseCompose {
      *
      * @param <T>
      */
-    private static class ResponseFunction<T> implements Function<BaseResponse<T>, ObservableSource<BaseResponse<T>>> {
+    private static class ResponseFunction<T> implements Function<BaseResponse<T>, Flowable<BaseResponse<T>>> {
 
         @Override
-        public ObservableSource<BaseResponse<T>> apply(BaseResponse<T> tResponse) throws Exception {
+        public Flowable<BaseResponse<T>> apply(BaseResponse<T> tResponse) throws Exception {
             int code = tResponse.getCode();
             String message = tResponse.getMsg();
             if (code == DefaultNetExceptionParser.SUCCESS) {
-                return Observable.just(tResponse);
+                return Flowable.just(tResponse);
             } else {
-                return Observable.error(new ApiException(code, message));
+                return Flowable.error(new ApiException(code, message));
             }
         }
     }

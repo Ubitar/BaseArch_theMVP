@@ -2,11 +2,10 @@ package com.common.network;
 
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
+import io.reactivex.Flowable;
 import io.reactivex.functions.Function;
 
-public class RetryWhenFunction implements Function<Observable<? extends Throwable>, Observable<?>> {
+public class RetryWhenFunction implements Function<Flowable<? extends Throwable>, Flowable<?>> {
 
     //重试延迟时间
     private int delayTime = 3000;
@@ -24,20 +23,21 @@ public class RetryWhenFunction implements Function<Observable<? extends Throwabl
     }
 
     @Override
-    public Observable<?> apply(Observable<? extends Throwable> observable) throws Exception {
-        return observable.flatMap(new Function<Throwable, ObservableSource<?>>() {
+    public Flowable<?> apply(Flowable<? extends Throwable> observable) throws Exception {
+        return observable.flatMap(new Function<Throwable, Flowable<?>>() {
             @Override
-            public ObservableSource<?> apply(Throwable throwable) throws Exception {
+            public Flowable<?> apply(Throwable throwable) throws Exception {
                 if (throwable instanceof ApiException) {
                     ApiException exception = (ApiException) throwable;
                     if (exception.getCode() == DefaultNetExceptionParser.NETWORK_ERROR) {
                         if (currentTime++ < maxRetryCount) {
-                            return Observable.just(currentTime).delay(delayTime, TimeUnit.MILLISECONDS);
+                            return Flowable.just(currentTime).delay(delayTime, TimeUnit.MILLISECONDS);
                         }
                     }
                 }
-                return Observable.error(throwable);
+                return Flowable.error(throwable);
             }
         });
     }
+
 }

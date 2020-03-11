@@ -28,7 +28,6 @@ public class NetworkManager {
                 .readTimeout(15, TimeUnit.SECONDS)
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .addInterceptor(new LoggerInterceptor(LoggerInterceptor.TAG))
-                .addInterceptor(new TokenInterceptor())
                 .build();
         retrofit = new Retrofit.Builder()
                 .client(client)

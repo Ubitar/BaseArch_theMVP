@@ -5,6 +5,7 @@ import com.common.bean.BaseResponse
 import com.common.bean.UserBean
 import com.common.network.model.BaseModel
 import com.huang.base.network.api.UserApi
+import io.reactivex.Flowable
 
 import io.reactivex.Observable
 
@@ -24,11 +25,11 @@ class UserModel : BaseModel<UserApi>() {
         return UserApi::class.java
     }
 
-    fun login(account: String, password: String): Observable<BaseResponse<UserBean>> {
+    fun login(account: String, password: String): Flowable<BaseResponse<UserBean>> {
         return model.login(account, password)
     }
 
-    fun logout(token: String): Observable<BaseResponse<Any>> {
+    fun logout(token: String): Flowable<BaseResponse<Any>> {
         return model.logout(token)
     }
 

@@ -70,7 +70,7 @@ dependencies {
     implementation dependencies.blankj_utilcode
     implementation dependencies.barlibrary
     implementation dependencies.backgroundlibrary
-    implementation dependencies.hawk
+    implementation dependencies.mmkv
     implementation dependencies.fragmentation
     implementation dependencies.fragmentation_swipeback
     implementation dependencies.eventbus

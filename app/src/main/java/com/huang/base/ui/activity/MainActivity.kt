@@ -2,35 +2,25 @@ package com.huang.base.ui.activity
 
 import android.os.Bundle
 import android.view.View
-
+import androidx.fragment.app.Fragment
+import butterknife.OnClick
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.common.common.IntentRouter
-import com.common.network.RetryWhenFunction
-import com.common.saver.UserInfoSaver
-import com.common.ui.activity.BaseActivity
-import com.huang.base.R
 import com.common.network.ResponseCompose
+import com.common.network.RetryWhenFunction
+import com.common.network.SchedulerCompose
+import com.common.ui.activity.BaseActivity
 import com.common.ui.adapter.ViewPagerAdapter
+import com.common.ui.dialog.AlertConfirmDialog
+import com.common.util.AutoDisposeUtil
+import com.huang.base.R
+import com.huang.base.event.TurnViewPagerEvent
 import com.huang.base.network.model.UserModel
 import com.huang.base.ui.delegate.MainDelegate
 import com.huang.base.ui.fragment.MainFragment
-import com.common.network.SchedulerCompose
-import com.uber.autodispose.AutoDispose
-import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
-
-import java.util.ArrayList
-
-import androidx.fragment.app.Fragment
-
-import butterknife.OnClick
-import com.common.ui.adapter.DefActionBarAdapter
-import com.common.ui.dialog.AlertConfirmDialog
-import com.common.util.AutoDisposeUtil
-import com.huang.base.event.TurnViewPagerEvent
-import com.uber.autodispose.AutoDispose.autoDisposable
-import com.uber.autodispose.autoDispose
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import java.util.*
 
 @Route(path = IntentRouter.MAIN_ACITIVTY)
 class MainActivity : BaseActivity<MainDelegate>() {
@@ -62,14 +52,14 @@ class MainActivity : BaseActivity<MainDelegate>() {
     fun onClickTxt() {
         userModel.login("123", "123")
                 .compose(SchedulerCompose.io2main())
-                .compose(ResponseCompose.filterResult())//过滤数据
+                .compose(ResponseCompose.parseResult())//过滤数据
                 .retryWhen(RetryWhenFunction(3000, 3))//网络问题重试请求
                 .flatMap { response ->
-                    UserInfoSaver.saveUserInfo(response.data!!)
+//                    UserInfoSaver.saveUserInfo(response.data!!)
                     userModel.logout(response.data?.token.toString())
                 }
                 .compose(SchedulerCompose.io2main())
-                .compose(ResponseCompose.filterResult())
+                .compose(ResponseCompose.parseResult())
                 .doOnSubscribe { showLoading() }
                 .doFinally { hideLoading() }
                 .retryWhen(RetryWhenFunction(3000, 3))//网络问题重试请求
