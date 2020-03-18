@@ -27,18 +27,18 @@ class MainFragment : BaseFragment<MainFragmentDelegate>() {
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {
         super.onLazyInitView(savedInstanceState)
-        viewDelegate?.setText("fragment" + (index + 1) + "\n点击后打开activity")
+        viewDelegate?.setText("fragment" + (index + 1) + "\n点击后打开fragment")
         viewDelegate?.setBackgroundColor(index)
     }
 
     @OnClick(R.id.txt)
     fun onClickTxt() {
-        IntentRouter.build(IntentRouter.MAIN_ACITIVTY).navigation(context)
+        (parentFragment as BaseFragment<*>).start(SecondFragment())
     }
 
     @OnClick(R.id.txt2)
     fun onClickTxt2() {
-        EventBus.getDefault().post(TurnViewPagerEvent(2))
+        EventBus.getDefault().post(TurnViewPagerEvent(1))
     }
 
     companion object {

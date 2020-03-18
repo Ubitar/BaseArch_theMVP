@@ -12,7 +12,7 @@ import butterknife.BindView
 
 class MainFragmentDelegate : BaseDelegate() {
     @BindView(R.id.bg)
-    lateinit var bg: LinearLayout
+    lateinit var bg: RelativeLayout
     @BindView(R.id.txt)
     lateinit var txt: TextView
 
