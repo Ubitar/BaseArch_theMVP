@@ -3,7 +3,6 @@ package com.common.ui.activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
@@ -12,10 +11,9 @@ import butterknife.Unbinder
 import com.blankj.utilcode.util.KeyboardUtils
 import com.common.ui.common.IController
 import com.common.ui.delegate.BaseDelegate
-import com.common.ui.dialog.BaseDialogFragment
 import com.common.ui.dialog.LoadingDialog
-import com.common.ui.fragment.BaseFragment
 import com.gyf.immersionbar.ImmersionBar
+import com.huang.lib.BaseDialogFragment
 import com.huang.lib.util.ActivityManager
 import com.huang.lib.util.KeyboardUtil
 import com.huang.lib.util.T

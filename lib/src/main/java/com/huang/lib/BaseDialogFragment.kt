@@ -1,4 +1,4 @@
-package com.common.ui.dialog
+package com.huang.lib
 
 import android.app.Dialog
 import android.content.DialogInterface
@@ -9,7 +9,6 @@ import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.KeyboardUtils
-import com.common.R
 
 
 /**

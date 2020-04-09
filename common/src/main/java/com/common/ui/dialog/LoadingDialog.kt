@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager
 import butterknife.BindView
 import com.common.R
 import com.common.R2
+import com.huang.lib.BaseDialogFragment
 
 class LoadingDialog : BaseDialogFragment() {
     companion object {

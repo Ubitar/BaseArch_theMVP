@@ -7,6 +7,7 @@ import butterknife.BindView
 import butterknife.OnClick
 import com.common.R2
 import com.common.R
+import com.huang.lib.BaseDialogFragment
 import kotlinx.android.synthetic.main.dialog_base_alert_confirm.*
 
 class AlertConfirmDialog : BaseDialogFragment() {

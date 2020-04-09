@@ -65,6 +65,7 @@ class SecondFragment : BaseFragment<SecondFragmentDelegate>() {
         AlertConfirmDialog.Builder()
                 .setOutsideCancelable(false)
                 .setBackEnable(false)
+                .setTitle("xxxx")
                 .build().show(childFragmentManager, "test")
     }
 

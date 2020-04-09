@@ -4,7 +4,6 @@ import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.common.common.IntentRouter
 import com.common.ui.activity.BaseActivity
-import com.common.ui.adapter.ViewPagerAdapter
 import com.huang.base.R
 import com.huang.base.ui.delegate.MainDelegate
 import com.huang.base.ui.fragment.SecondFragment

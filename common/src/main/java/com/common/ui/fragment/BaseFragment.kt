@@ -1,7 +1,6 @@
 package com.common.ui.fragment
 
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import java.util.HashSet
 import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.common.ui.common.IController
-import com.common.ui.dialog.BaseDialogFragment
+import com.huang.lib.BaseDialogFragment
 import org.greenrobot.eventbus.EventBus
 
 /**

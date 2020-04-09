@@ -50,4 +50,5 @@ class MainFragment : BaseFragment<MainFragmentDelegate>() {
             return fragment
         }
     }
+
 }
