@@ -8,41 +8,31 @@ import com.common.ui.delegate.BaseDelegate
 
 abstract class BaseDelegateFragment<S : BaseDelegate> : BaseSwipeBackFragment() {
 
-    protected var viewDelegate: S? = null
+    var viewDelegate: S = lazy { createViewDelegate() }.value
 
     protected var isFirstVisible = true
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        createViewDelegate()
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        if (viewDelegate?.rootView == null) {
+        if (viewDelegate.rootView == null) {
             createMainViewBinding<ViewDataBinding>(inflater, container, savedInstanceState)
-            return viewDelegate?.rootView
+            return viewDelegate.rootView
         }
-        return viewDelegate?.rootView!!
+        return viewDelegate.rootView!!
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewDelegate?.initWidget()
+        viewDelegate.initWidget()
     }
 
     override fun onDestroyView() {
-        viewDelegate?.onDestroyWidget()
+        viewDelegate.onDestroyWidget()
         initFragmentStatus()
         super.onDestroyView()
     }
 
-    override fun onDestroy() {
-        this.viewDelegate = null
-        super.onDestroy()
-    }
-
     protected fun <D : ViewDataBinding> createMainViewBinding(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): D? {
-        return this.viewDelegate!!.createMainView(inflater, container, savedInstanceState)
+        return this.viewDelegate.createMainView(inflater, container, savedInstanceState)
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -50,25 +40,18 @@ abstract class BaseDelegateFragment<S : BaseDelegate> : BaseSwipeBackFragment() 
         if (viewDelegate == null) createViewDelegate()
     }
 
-    private fun createViewDelegate() {
-        try {
-            viewDelegate = getDelegateClass().newInstance()
-        } catch (e: IllegalAccessException) {
-            e.printStackTrace()
-        } catch (e: java.lang.InstantiationException) {
-            e.printStackTrace()
-        }
-
+    private fun createViewDelegate(): S {
+        return getDelegateClass().newInstance()
     }
 
     private fun initFragmentStatus() {
-        viewDelegate?.rootView = null
+        viewDelegate.rootView = null
         isFirstVisible = true
     }
 
     override fun onSupportVisible() {
         super.onSupportVisible()
-        viewDelegate?.onSupportVisible()
+        viewDelegate.onSupportVisible()
     }
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {
@@ -78,7 +61,7 @@ abstract class BaseDelegateFragment<S : BaseDelegate> : BaseSwipeBackFragment() 
 
     override fun onSupportInvisible() {
         super.onSupportInvisible()
-        viewDelegate?.onSupportInvisible()
+        viewDelegate.onSupportInvisible()
     }
 
     protected abstract fun getDelegateClass(): Class<S>

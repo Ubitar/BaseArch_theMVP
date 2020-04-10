@@ -9,7 +9,7 @@ import com.common.ui.delegate.BaseDelegate
 
 abstract class BaseDelegateActivity<S : BaseDelegate> : BaseSwipeBackActivity() {
 
-    protected var viewDelegate: S? = null
+    protected var viewDelegate: S
 
     init {
         try {
@@ -25,25 +25,24 @@ abstract class BaseDelegateActivity<S : BaseDelegate> : BaseSwipeBackActivity() 
         super.onCreate(savedInstanceState)
         createMainBinding<ViewDataBinding>(layoutInflater, null, savedInstanceState)
 
-        setContentView(viewDelegate?.rootView)
+        setContentView(viewDelegate.rootView)
 
-        viewDelegate?.initWidget()
+        viewDelegate.initWidget()
     }
 
     override fun onResume() {
         super.onResume()
-        viewDelegate?.onSupportVisible()
+        viewDelegate.onSupportVisible()
     }
 
     override fun onPause() {
-        viewDelegate?.onSupportInvisible()
+        viewDelegate.onSupportInvisible()
         super.onPause()
     }
 
 
     override fun onDestroy() {
-        viewDelegate?.onDestroyWidget()
-        viewDelegate = null
+        viewDelegate.onDestroyWidget()
         super.onDestroy()
     }
 
@@ -62,7 +61,7 @@ abstract class BaseDelegateActivity<S : BaseDelegate> : BaseSwipeBackActivity() 
     }
 
     protected fun <D : ViewDataBinding> createMainBinding(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): D? {
-        return this.viewDelegate?.createMainView(inflater, container, savedInstanceState)
+        return this.viewDelegate.createMainView(inflater, container, savedInstanceState)
     }
 
     protected abstract fun getDelegateClass(): Class<S>

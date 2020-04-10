@@ -27,8 +27,8 @@ class MainFragment : BaseFragment<MainFragmentDelegate>() {
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {
         super.onLazyInitView(savedInstanceState)
-        viewDelegate?.setText("fragment" + (index + 1) + "\n点击后打开fragment")
-        viewDelegate?.setBackgroundColor(index)
+        viewDelegate.setText("fragment" + (index + 1) + "\n点击后打开fragment")
+        viewDelegate.setBackgroundColor(index)
     }
 
     @OnClick(R.id.txt)

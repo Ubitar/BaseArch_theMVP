@@ -33,7 +33,7 @@ class SecondFragment : BaseFragment<SecondFragmentDelegate>() {
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {
         super.onLazyInitView(savedInstanceState)
-        viewDelegate?.setText("点击发起网络请求1")
+        viewDelegate.setText("点击发起网络请求1")
         initViewPager()
     }
 
@@ -71,27 +71,27 @@ class SecondFragment : BaseFragment<SecondFragmentDelegate>() {
 
     @OnClick(R.id.tab1)
     fun onClickTab1() {
-        viewDelegate?.setCurrentAt(0)
+        viewDelegate.setCurrentAt(0)
     }
 
     @OnClick(R.id.tab2)
     fun onClickTab2() {
-        viewDelegate?.setCurrentAt(1)
+        viewDelegate.setCurrentAt(1)
     }
 
     @OnClick(R.id.tab3)
     fun onClickTab3() {
-        viewDelegate?.setCurrentAt(2)
+        viewDelegate.setCurrentAt(2)
     }
 
     @OnClick(R.id.tab4)
     fun onClickTab4() {
-        viewDelegate?.setCurrentAt(3)
+        viewDelegate.setCurrentAt(3)
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: TurnViewPagerEvent) {
-        viewDelegate?.setCurrentAt(event.index)
+        viewDelegate.setCurrentAt(event.index)
     }
 
     private fun initViewPager() {
@@ -102,6 +102,6 @@ class SecondFragment : BaseFragment<SecondFragmentDelegate>() {
         fragments.add(MainFragment.newInstance(2))
         fragments.add(MainFragment.newInstance(3))
         adapter.fragments = fragments
-        viewDelegate?.initViewPager(adapter)
+        viewDelegate.initViewPager(adapter)
     }
 }

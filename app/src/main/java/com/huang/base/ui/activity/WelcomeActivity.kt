@@ -58,7 +58,7 @@ class WelcomeActivity : BaseActivity<WelcomeDelegate>() {
                                 .setSubmitText("设置").setCancelText("退出")
                                 .setOutsideCancelable(false)
                                 .setBackEnable(false)
-                                .setOnClickSubmitListener { IntentHelper.startSystemPermissionActivity(activity) }
+                                .setOnClickSubmitListener { IntentHelper.startSystemPermissionActivity(getActivity() ) }
                                 .setOnClickCancelListener { ActivityCompat.finishAfterTransition(this@WelcomeActivity) }
                                 .build()
                                 .showNow(supportFragmentManager, "TAG")
@@ -69,7 +69,7 @@ class WelcomeActivity : BaseActivity<WelcomeDelegate>() {
     private fun next(){
         Observable.timer(2, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .`as`(AutoDisposeUtil.fromOnDestroy(activity))
+                .`as`(AutoDisposeUtil.fromOnDestroy(getActivity()))
                 .subscribe({
                     //            IntentRouter.build(IntentRouter.SECOND_ACITIVTY).navigation()
                     IntentRouter.build(IntentRouter.MAIN_ACITIVTY).navigation()

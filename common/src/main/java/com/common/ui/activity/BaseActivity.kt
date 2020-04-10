@@ -34,9 +34,6 @@ abstract class BaseActivity<S : BaseDelegate> : BaseDelegateActivity<S>(), ICont
 
     protected var loadingDialog: LoadingDialog? = null
 
-    protected val activity: BaseActivity<*>
-        get() = this
-
     override fun onCreate(savedInstanceState: Bundle?) {
         BackgroundLibrary.inject(this)
         super.onCreate(savedInstanceState)
@@ -145,6 +142,10 @@ abstract class BaseActivity<S : BaseDelegate> : BaseDelegateActivity<S>(), ICont
                 .keyboardEnable(true, WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
                 .navigationBarDarkIcon(true)
                 .navigationBarColor(android.R.color.white)
+    }
+
+    fun getActivity(): BaseActivity<*> {
+        return this
     }
 
 }
