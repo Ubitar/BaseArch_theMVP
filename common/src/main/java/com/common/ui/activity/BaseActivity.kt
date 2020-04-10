@@ -9,11 +9,12 @@ import androidx.fragment.app.Fragment
 import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.blankj.utilcode.util.KeyboardUtils
+import com.common.R
 import com.common.ui.common.IController
 import com.common.ui.delegate.BaseDelegate
 import com.common.ui.dialog.LoadingDialog
 import com.gyf.immersionbar.ImmersionBar
-import com.huang.lib.BaseDialogFragment
+import com.common.ui.dialog.BaseDialogFragment
 import com.huang.lib.util.ActivityManager
 import com.huang.lib.util.KeyboardUtil
 import com.huang.lib.util.T
@@ -87,7 +88,7 @@ abstract class BaseActivity<S : BaseDelegate> : BaseDelegateActivity<S>(), ICont
     override fun finish() {
         KeyboardUtils.hideSoftInput(this)
         super.finish()
-        overridePendingTransition(com.resource.R.anim.anim_no, com.resource.R.anim.anim_to_right_close)
+        overridePendingTransition(R.anim.anim_no, R.anim.anim_to_right_close)
     }
 
     override fun onDestroy() {

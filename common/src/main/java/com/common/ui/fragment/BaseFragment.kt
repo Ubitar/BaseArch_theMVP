@@ -13,7 +13,7 @@ import java.util.HashSet
 import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.common.ui.common.IController
-import com.huang.lib.BaseDialogFragment
+import com.common.ui.dialog.BaseDialogFragment
 import org.greenrobot.eventbus.EventBus
 
 /**

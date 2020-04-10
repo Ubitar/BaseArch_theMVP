@@ -76,7 +76,6 @@ dependencies {
 
 
     implementation project(":lib")
-    implementation project(":resource")
 }
 repositories {
     mavenCentral()

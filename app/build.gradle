@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'cn.leo.plugin.magic'//点击防重用
 apply plugin: 'com.jakewharton.butterknife'
 
 android {
@@ -64,7 +63,6 @@ dependencies {
     implementation dependencies.fastjson
     implementation dependencies.autodisposeandroid
     implementation dependencies.autodisposearchcomponents
-    implementation dependencies.singleclick
     implementation dependencies.glide
     kapt dependencies.glidecompiler
     implementation dependencies.mmkv
@@ -83,7 +81,6 @@ dependencies {
 
     implementation project(":common")
     implementation project(":lib")
-    implementation project(":resource")
 }
 repositories {
     mavenCentral()

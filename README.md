@@ -8,7 +8,7 @@
 5. Retrofit2
 6. AutoDispose
 7. SoulPermission
-8. SingleClick
-9. Java1.8
+
+因为Butterknife的限制，且目前项目组件化的不合理程度，该基础架构仅适用于小型项目使用，不适合用于组件化的大项目中
 
 # 记得自备梯子
