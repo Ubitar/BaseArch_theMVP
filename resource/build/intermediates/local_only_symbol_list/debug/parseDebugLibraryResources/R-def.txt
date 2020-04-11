@@ -1,0 +1,13 @@
+R_DEF: Internal format may change without notice
+local
+anim anim_alpha_bottom_in
+anim anim_alpha_bottom_out
+anim anim_alpha_in
+anim anim_alpha_out
+anim anim_no
+anim anim_to_down_close
+anim anim_to_left_open
+anim anim_to_right_close
+anim anim_to_up_open
+anim down_to_up_bottom
+string app_name
